@@ -1,0 +1,51 @@
+class LinkedListStack {
+    private class Node {
+        int data;
+        Node next;
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    private Node head;
+
+    // Push operation
+    public void push(int value) {
+        Node newNode = new Node(value);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    // Pop operation
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return Integer.MIN_VALUE;
+        }
+        int value = head.data;
+        head = head.next;
+        return value;
+    }
+
+    // Peek operation
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return Integer.MIN_VALUE;
+        }
+        return head.data;
+    }
+
+    // Check if stack is empty
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public static void main(String[] args) {
+        LinkedListStack stack = new LinkedListStack();
+        stack.push(1);
+        stack.push(2);
+        System.out.println("Top element: " + stack.peek()); // Output: 2
+        System.out.println("Popped element: " + stack.pop()); // Output: 2
+    }
+}
