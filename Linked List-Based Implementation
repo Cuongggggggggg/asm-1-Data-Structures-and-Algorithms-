@@ -1,0 +1,52 @@
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedListQueue {
+    private Node front, rear;
+
+    public LinkedListQueue() {
+        this.front = this.rear = null;
+    }
+
+    public void enqueue(int item) {
+        Node newNode = new Node(item);
+        if (this.rear == null) {
+            this.front = this.rear = newNode;
+            return;
+        }
+        this.rear.next = newNode;
+        this.rear = newNode;
+    }
+
+    public int dequeue() {
+        if (this.front == null) {
+            System.out.println("Queue is empty");
+            return Integer.MIN_VALUE;
+        }
+        int item = this.front.data;
+        this.front = this.front.next;
+        if (this.front == null) {
+            this.rear = null;
+        }
+        return item;
+    }
+
+    public boolean isEmpty() {
+        return this.front == null;
+    }
+
+    public static void main(String[] args) {
+        LinkedListQueue queue = new LinkedListQueue();
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        System.out.println("Dequeued: " + queue.dequeue());  // Output: 10
+    }
+}
